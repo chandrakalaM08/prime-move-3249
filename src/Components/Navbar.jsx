@@ -44,7 +44,9 @@ export default function Navbar (){
   
 
   return (
-    <div className="whole">
+    <nav>
+    
+      
       <div className="top" style={{display:"flex", justifyContent:"space-between", margin : "5px 35px 5px 35px", paddingBottom: "2px"}}>
      
     <div>
@@ -62,11 +64,11 @@ export default function Navbar (){
       </div>
  {/*  First Nav Bar */}
         {/* { 1st logo part  */}
-        <div style={{display:"flex", justifyContent:"space-between", margin : "5px 0px 5px 0px", background:"#EFEFE1", height:"55px"}}>
+        <div style={{display:"flex", justifyContent:"space-between", margin : "5px 0px 5px 0px", background:"rgb(239, 239, 225)", height:"55px"}}>
         <div className="logo">
         
         <a href="/">
-        <img src={RoadMaster} alt="logo_image" width={"90"}  style={{marginLeft:"45px",marginTop:"-12px" , 
+        <img src={RoadMaster} alt="logo_image" width={"90"}  style={{marginLeft:"60px",marginTop:"-12px" , 
 background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
         </a>
    
@@ -80,7 +82,7 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
               style={{
                 borderRadius: "5px 0px 0px 5px",
                 width: "450px",
-                fontSize: "16px",
+                fontSize: "14px",
                 padding: "8px",
                 borderStyle:"none",
                 marginBottom:"6px"
@@ -139,7 +141,7 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
      
 {/* Second Navbar */}
       <div >
-        <ul id="navbar2" style={{display: "flex", justifyContent :"space-around", fontSize : "17px", fontFamily:"serif" , color:"grey", marginTop: "5px"}}>
+        <ul id="navbar2" style={{display: "flex", justifyContent :"space-around", fontSize : "19px", fontFamily:"serif" , color:"grey", marginTop: "5px"}}>
           <li>
             <Link to="/product">Exterior</Link>
           </li>
@@ -167,6 +169,7 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
     
         </ul>
       </div>
-    </div>
+    
+      </nav>
   );
 };

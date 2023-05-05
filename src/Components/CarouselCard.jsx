@@ -75,7 +75,7 @@ const CarouselCard = () => {
                   padding: "2px 10px",
                   textAlign: "center",
                   fontWeight: "400",
-                  fontSize: "18px",
+                  fontSize: "15px",
                   marginTop: "0px",
                   lineHeight: "30px",
                   color: "grey",
