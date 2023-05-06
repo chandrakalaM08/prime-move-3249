@@ -1,0 +1,14 @@
+.backgroundRadialGradient {
+  background: rgb(248, 249, 241);
+  background: linear-gradient(90deg, rgba(248, 249, 241, 1) 0%, rgba(226, 239, 241, 1) 100%);
+}
+
+
+.glass {
+  background-color: rgb(239, 239, 225) !important;
+
+}
+
+* {
+  font-weight: 600;
+}
