@@ -1,114 +1,103 @@
-import React from 'react';
+import { Box, Container, Flex, Image, Text, Select, Button } from "@chakra-ui/react";
+import DeliveryOptions from "./Delivery";
+import { DeleteIcon } from "@chakra-ui/icons";
+import QuantityButton from './QuantityButton';
+import Total from "./Total";
 
 const Cart = () => {
-  const cartItems = [
-    { id: 1, name: 'Product 1', price: 9.99, quantity: 2 },
-    { id: 2, name: 'Product 2', price: 14.99, quantity: 1 },
-    { id: 3, name: 'Product 4', price: 19.99, quantity: 4 },
-  ];
 
-  const renderCartItems = () => {
-    return cartItems.map(item => (
-      <div key={item.id} style={styles.cartItem}>
-        <div style={styles.itemDetails}>
-          <span style={styles.itemName}>{item.name}</span>
-          <span style={styles.itemPrice}>${item.price.toFixed(2)}</span>
-          <span style={styles.itemQuantity}>Quantity: {item.quantity}</span>
-        </div>
-        <button style={styles.itemRemove}>Remove</button>
-      </div>
-    ));
-  };
+  const carts = [
+    {
+    "picture": "https://boodmo.com/media/cache/catalog_part//images/parts/d132084e3cbbfa98b154f5f6ac239e22.webp",
+      title: "Bonnet",
+      price: 23150,
+      quantity : 1
+    }
+     
+]
 
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  
 
   return (
-    <div style={styles.cartPage}>
-      <h2 style={styles.cartTitle}>Shopping Cart</h2>
-      {cartItems.length > 0 ? (
-        <div>
-          {renderCartItems()}
-          <div style={styles.cartTotal}>
-            <span style={styles.totalLabel}>Total:</span>
-            <span style={styles.totalPrice}>${calculateTotal().toFixed(2)}</span>
-          </div>
-          <button style={styles.checkoutButton}>Checkout</button>
-        </div>
-      ) : (
-        <p style={styles.emptyCartText}>Your cart is empty.</p>
-      )}
-    </div>
-  );
-};
+    <Box  my={5} paddingTop={"120px"} >
+      <Container maxW="container.xl">
+        <Flex gap={5}>
+          {/* cart */}
+          <Box flex="1">
+            <Box borderWidth={1} borderRadius="md" p={4} boxShadow="base">
+              <Text as="h4" fontSize="xl" fontWeight="bold" mb={4}>
+                Your shopping cart
+              </Text>
+              {carts?.map((item) => {
+                let total = item.price * item.quantity;
+                return (
+                      <Flex gridGap={3} mb={4}>
+                <Box flex="0 0 96px">
+                  <Image
+                    src={item.picture}
+                    alt="Product Image"
+                    borderRadius="md"
+                    boxShadow="sm"
+                    width={200}
+                  />
+                </Box>
+                <Box flex="1">
+                  <Text as="a" href="#" color="blue.500" fontWeight="bold" fontSize="lg">
+                    {item.title}
+                  </Text>
+                  <Text color="gray.500" mt={1}>
+                    Yellow, Jeans
+                  </Text>
+                </Box>
+                <Flex flexDirection={{ base: "row", lg: "column", xl: "row" }} alignItems="center">
+                  <Box>
+                     <QuantityButton quantity={item.quantity} />
+                  </Box>
+                  <Box>
+                    <Text as="h6" fontSize="md" fontWeight="bold">
+                      ₹ {total}
+                    </Text>
+                    <Text color="gray.500" whiteSpace="nowrap">
+                      ₹ {item.price} / per item
+                    </Text>
+                  </Box>
+                </Flex>
+                <Box ml="auto">
+                  <Flex alignItems="center">
+                    <Button variant="outline" size="sm" p={2}>
+                      ❤️
+                    </Button>
+                    <Button variant="solid" size="sm" colorScheme="red" ml={2}>
+                      <DeleteIcon/>
+                    </Button>
+                  </Flex>
+                </Box>
+              </Flex>
+                )
+              })}
+              
 
-const styles = {
-  cartPage: {
-    fontFamily: 'Arial, sans-serif',
-    maxWidth: '600px',
-    margin: '0 auto',
-    padding: '20px',
-    marginTop : "120px"
-  },
-  cartTitle: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    marginBottom: '20px',
-  },
-  cartItem: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '10px',
-  },
-  itemDetails: {
-    flexGrow: 1,
-  },
-  itemName: {
-    fontSize: '16px',
-    fontWeight: 'bold',
-  },
-  itemPrice: {
-    fontSize: '14px',
-    color: '#888',
-  },
-  itemQuantity: {
-    fontSize: '14px',
-    color: '#888',
-  },
-  itemRemove: {
-    marginLeft: '10px',
-    padding: '5px 10px',
-    background: '#ff4f4f',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  cartTotal: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '20px',
-  },
-  totalLabel: {
-    fontSize: '16px',
-    fontWeight: 'bold',
-    marginRight: '10px',
-  },
-  totalPrice: {
-    fontSize: '16px',
-    fontWeight: 'bold',
-  },
-  checkoutButton: {
-    marginTop: '20px',
-    padding: '10px 20px',
-    background: '#36b14f',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px'
-  }
+              {/* Repeat the above Flex container for additional items in the cart */}
+
+            
+
+              <Box borderTopWidth={1} pt={4} mx={4} mb={4}>
+                <DeliveryOptions/>
+              </Box>
+            </Box>
+          </Box>
+          {/* cart */}
+
+          {/* summary */}
+          <Box flex="0 0 300px">
+            <Total  />
+
+            </Box>
+            </Flex>
+      </Container>
+    </Box>
+  )
 }
+
 
 export default Cart;

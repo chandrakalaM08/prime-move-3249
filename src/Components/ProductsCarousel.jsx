@@ -16,7 +16,7 @@ export default function ProductsCarousel() {
     }
   }
   return (
-    <Box maxWidth="100%" marginTop={"125px"}>
+    <Box maxWidth="100%" >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
