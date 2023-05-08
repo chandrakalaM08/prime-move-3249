@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import  "../StyleSheet/Navbar.module.css"
 
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ import { useState } from "react";
 
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AuthContext } from "../Auth/AuthContext";
+import { Button } from "@chakra-ui/react";
 
 
 
@@ -20,7 +22,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navbar (){
 
-  const [signout, setSignOut] = useState(true)
+  const {isAuth,logout,username} = useContext(AuthContext)
   const [query, setQuery] = useState('');
  
 
@@ -33,14 +35,6 @@ export default function Navbar (){
     // Pass the search results as a query parameter to the products page
 
   }
-
- const handleClick = () =>{
-  localStorage.removeItem('token');
-  window.localStorage.setItem("user","User")
-  setSignOut(!signout)
- }
-
- const  user = localStorage.getItem("user") || "user";
   
 
   return (
@@ -54,7 +48,7 @@ export default function Navbar (){
     </div>
 
     <div>
-    <p> <span style={{fontWeight :"bold"}}>Free Shipping : </span> On All U.S. Orders Above $100  </p>
+    <p> <span style={{fontWeight :"bold"}}>Free Shipping : </span> On All India Orders Above ₹ 5000  </p>
     </div>
 
     <div>
@@ -113,19 +107,19 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
 
 <div>
               
-<Link to="/login">   <p>My Account</p> </Link>                
+            <Link to="/login">   <p>{isAuth ? `${username}` : "My Account"}</p> </Link>                
 </div>
 
 <div>
           <Link  to="/">
         
-          <p>Garage</p> 
+          {isAuth ? <Button onClick={logout}>Logout</Button> : <p>Garage</p>} 
           </Link>
         </div>
 
       
         <div>
-          <Link to="/wishlist">
+          <Link to="/">
             <AiFillHeart />
           </Link>
         </div>
@@ -143,28 +137,28 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
       <div >
         <ul id="navbar2" style={{display: "flex", justifyContent :"space-around", fontSize : "19px", fontFamily:"serif" , color:"grey", marginTop: "5px"}}>
           <li>
-            <Link to="/product">Exterior</Link>
+            <Link to="/products">All</Link>
           </li>
           <li>
-            <Link to="/product?category=Rings">Interior</Link>
+            <Link to="/products?type=ExteriorInterior">Interior/Exterior</Link>
           </li>
           <li>
-            <Link to="/product?category=Earrings">Performance</Link>
+            <Link to="/products?type=performance">Performance</Link>
           </li>
           <li>
-            <Link to="/product?category=Bracelets" >Wheels & Tires</Link>
+            <Link to="/products?type=WheelTyre" >Wheels & Tyres</Link>
           </li>
           <li>
-            <Link to="/product">Body Parts</Link>
+            <Link to="/products?type=Parts">Body Parts</Link>
           </li>
           <li>
-            <Link to="/product?category=Mangalsutra">Repair Parts</Link>
+            <Link to="/products?type=Parts">Repair Parts</Link>
           </li>
           <li>
-            <Link to="/">Electronics</Link>
+            <Link to="/products?type=electronics">Electronics</Link>
           </li>
           <li>
-            <Link to="/product">Tools & Garage</Link>
+            <Link to="/products?type=Tools">Tools & Garage</Link>
           </li>
     
         </ul>

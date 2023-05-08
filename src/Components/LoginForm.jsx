@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { useState, useContext } from "react"
+import {useNavigate,Navigate} from "react-router-dom"
+import { AuthContext } from '../Auth/AuthContext';
+
 import {
   Box,
   Button,
@@ -14,10 +18,52 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
-import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+
 import { Link } from 'react-router-dom';
 
 function Login() {
+
+     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+
+    const {login,isAuth,setUserName} = useContext(AuthContext)
+
+    if (isAuth) {
+      return <Navigate to="/"/>
+    }
+
+    async function handleLogin() {
+        try {
+            let res = await fetch(`http://localhost:8080/users`)
+        
+        res = await res.json()
+        console.log("inside try", res,)
+          login()
+          setUserName(email)
+            console.log("login done")
+            navigate("/")
+        
+
+        } catch (error) {
+            console.log("error is", error)
+        }
+       
+}
+
+
+    function handleSubmit(e) {
+      e.preventDefault()
+      console.log("yaay")
+        handleLogin()
+        console.log("in handleSubmit", isAuth)
+        if (isAuth) {
+            console.log("isAuth inside login page", isAuth)
+           
+        }
+    }
+
 
 
   return (
@@ -34,24 +80,24 @@ function Login() {
             <Text color='gray.300' mb='3' textAlign='center'>
               Please enter your login and password!
             </Text>
-
+<form onSubmit={handleSubmit}>
             <FormControl mb='4'>
               <FormLabel>Email address</FormLabel>
-              <Input type='email' size='lg' />
+                <Input type='email' size='lg' onChange={(e) => { setEmail(e.target.value); console.log(e.target.value)}}/>
             </FormControl>
 
             <FormControl mb='4'>
               <FormLabel>Password</FormLabel>
-              <Input type='password' size='lg' />
+                <Input type='password' size='lg' onChange={(e) => { setPassword(e.target.value); console.log(e.target.value)}} />
             </FormControl>
 
             <Checkbox mb='4' colorScheme='teal'>
               Remember password
             </Checkbox>
 
-            <Button colorScheme='yellow' size='lg' mb='2' w='100%'>
-              Login
-            </Button>
+            <Input colorScheme='yellow' size='lg' mb='2' w='100%' type='submit'/>
+              
+              </form>
 <Divider/>
           
 
