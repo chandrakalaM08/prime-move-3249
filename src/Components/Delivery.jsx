@@ -21,7 +21,7 @@ const DeliveryOptions = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Standard Delivery
               </Text>
-              <Text>Estimated delivery time: Free Delivery in 3 - 5 Days </Text>
+              <Text>Estimated delivery time: Delivery in 3 - 5 Days </Text>
               <Text>
  Our standard delivery option ensures that your order will be delivered within the estimated time frame. It offers a cost-effective solution for customers who are not in a rush to receive their items.
               </Text>
@@ -33,7 +33,7 @@ const DeliveryOptions = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Express Delivery
               </Text>
-              <Text>Estimated delivery time: Within 1 - 2 Days in Extra ₹ 100 </Text>
+              <Text>Estimated delivery time: Within 1 - 2 Days(Currently only available in Metro cities)</Text>
               <Text>Free on cart value above ₹ 5000</Text>
               <Text>
                Need your order sooner? Choose our express delivery option for faster shipping. We prioritize your package and ensure it reaches you within the estimated delivery time. Please note that express delivery costs may be higher than standard delivery.

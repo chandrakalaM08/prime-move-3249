@@ -28,7 +28,7 @@ export default function Footer() {
         <h1 style={{ fontWeight: "600", fontSize: "20px" }}>Get in Touch</h1>
         <br />
         <Text>447, Brodway, FI 2,</Text>
-        <Text>New York, NY , 10103</Text>
+        <Text>New City, Bengaluru , 510103</Text>
         <br />
         <br />
         <Text style={{ fontWeight:"600"}}> <EmailIcon/> info@roadmaster.com</Text>

@@ -7,6 +7,7 @@ import CartPage from "../Pages/CartPage"
 import PaymentCheckout from "../Pages/PaymentCheckout"
 import SingleProduct from "../Pages/SingleProductPage"
 import PrivateRoute from "./PrivateRoute"
+import PageNotFound from "../Pages/PageNotFound"
 export default function AllRoutes(){
   return <>
   <Routes>
@@ -18,7 +19,8 @@ export default function AllRoutes(){
       <Route path="/payment" element={<PrivateRoute><PaymentCheckout /></PrivateRoute>}></Route>
       <Route path="/products/:id" element={
         <SingleProduct />}>
-     </Route>
+      </Route>
+      <Route path="/*" element={<PageNotFound/>}></Route>
   </Routes>
   </>
 }

@@ -20,7 +20,7 @@ import { Button } from "@chakra-ui/react";
 
 
 
-export default function Navbar (){
+export default function Navbar ({setSelectedCategory}){
 
   const {isAuth,logout,username} = useContext(AuthContext)
   const [query, setQuery] = useState('');
@@ -35,6 +35,7 @@ export default function Navbar (){
     // Pass the search results as a query parameter to the products page
 
   }
+  
   
 
   return (
@@ -107,7 +108,7 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
 
 <div>
               
-            <Link to="/login">   <p>{isAuth ? `${username}` : "My Account"}</p> </Link>                
+            <Link to="/login">   <p cursor={"pointer"}>{isAuth ? `${username}` : "My Account"}</p> </Link>                
 </div>
 
 <div>
@@ -143,10 +144,10 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
             <Link to="/products?type=ExteriorInterior">Interior/Exterior</Link>
           </li>
           <li>
-            <Link to="/products?type=performance">Performance</Link>
+            <Link to="/products?type=Performance" >Performance</Link>
           </li>
           <li>
-            <Link to="/products?type=WheelTyre" >Wheels & Tyres</Link>
+            <Link to="/products?type=Wheel-Tyre" >Wheels & Tyres</Link>
           </li>
           <li>
             <Link to="/products?type=Parts">Body Parts</Link>
@@ -155,7 +156,7 @@ background: "linear-gradient(316deg, ##D7D7D7 0%, #2e4057 74%)"}} />
             <Link to="/products?type=Parts">Repair Parts</Link>
           </li>
           <li>
-            <Link to="/products?type=electronics">Electronics</Link>
+            <Link to="/products?type=Electronics">Electronics</Link>
           </li>
           <li>
             <Link to="/products?type=Tools">Tools & Garage</Link>
