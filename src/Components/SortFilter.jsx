@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-export default function SortFilter({setSelectedCategory, setSelectedSort, setSelectedPrice}) {
+export default function SortFilter({setSelectedCategory, setOrder}) {
 
   // Define styles for different parts of the sidebar
   const stylediv = {
@@ -35,10 +35,11 @@ export default function SortFilter({setSelectedCategory, setSelectedSort, setSel
 
   // Define state and handlers for product type checkboxes
   const [categories, setCategories] = useState([
-    { name: 'ExteriorInterior', checked: false },
-    { name: 'Parts', checked: false },
-    { name: 'Wheel', checked: false },
-    { name: 'Electronics', checked: false },
+    { name: 'FORD', checked: false },
+    { name: 'Honda', checked: false },
+    { name: 'BOSCH', checked: false },
+    { name: 'TATA', checked: false },
+    { name: "CHEVROLET", checked: false }
   ]);
   const handleCheckbox = (index) => {
     const newCategories = [...categories];
@@ -56,7 +57,7 @@ export default function SortFilter({setSelectedCategory, setSelectedSort, setSel
 
   function onChangeValueSort(event) {
     console.log("inside onchangevalueSort", event.target.value);
-    setSelectedSort(event.target.value)
+    setOrder(event.target.value)
   }
 
  

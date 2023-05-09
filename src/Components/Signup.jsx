@@ -11,13 +11,55 @@ import {
   Checkbox,
   Icon,
   Heading,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { useState } from 'react';
 
 function Signup() {
+
+
+  const [user, setUser] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    token : 1234567
+  });
+
+  const handleChange = (event) => {
+    console.log(event.target.value)
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch('https://sparkling-fabulous-grandiflora.glitch.me/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('User created:', data);
+    alert("Signup Successful!")
+
+        // Perform any additional actions after user creation
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error);
+        // Handle error case
+      });
+  
+      
+  };
+
+  
   return (
     <>
       <Navbar/>
@@ -67,27 +109,38 @@ Whether you're a professional mechanic or a DIY enthusiast, RoadMaster Auto Part
           ></Box>
 
           <Box my={5} className={style.glass }p={5} style={{height :"fit-content"}} borderBottomLeftRadius={"10px"} borderTopRightRadius={"10px"} marginTop={"100px"}>
-            
+            <form onSubmit={handleSubmit}>
             <Flex >
               <FormControl flex="1" mr={2}>
                 <FormLabel>First name</FormLabel>
-                <Input type="text" />
+                <Input type="text"
+          name="first_name"
+          value={user.first_name}
+          onChange={handleChange} />
               </FormControl>
 
               <FormControl flex="1" ml={2}>
                 <FormLabel>Last name</FormLabel>
-                <Input type="text" />
+                <Input type="text" name="last_name"
+          value={user.last_name}
+          onChange={handleChange} />
               </FormControl>
             </Flex>
 
             <FormControl mt={4}>
               <FormLabel>Email</FormLabel>
-              <Input type="email" />
+              <Input type="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}/>
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" 
+          name="password"
+          value={user.password}
+          onChange={handleChange}/>
             </FormControl>
 
             <Flex justify="center" mt={4}>
@@ -96,8 +149,8 @@ Whether you're a professional mechanic or a DIY enthusiast, RoadMaster Auto Part
               </Checkbox>
             </Flex>
 
-                 <Button colorScheme='yellow' size='lg' mb='2' w='100%'>Sign up</Button>
-
+                 <Input bg='rgb(252, 198, 3)' size='lg' mb='2' w='100%' type='submit' name="Sign Up" cursor={"pointer"}/>
+</form>
             <Flex justify="center" mt={4}>
               <Text>or sign up with:</Text>
 

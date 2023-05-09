@@ -1,7 +1,9 @@
 import styles from "../StyleSheet/TopImage.module.css"
+import { useNavigate } from "react-router"
 
 export default function TopImage() {
 
+  const navigate = useNavigate()
   const style = {
   bgImg : {
    /* The image used */
@@ -17,7 +19,11 @@ export default function TopImage() {
       position: "relative",
    marginTop:"120px"
 }
-}
+  }
+  
+  function handleShopNow() {
+    navigate("/products")
+  }
 
   return <div className="bgImg" style={ style.bgImg}>
     <form action="/action_page.php" className={styles.container}>
@@ -29,7 +35,7 @@ export default function TopImage() {
       <input type="text" placeholder="Year" name="email" required/>
       <input type="text" placeholder="Make" name="psw" required/>
       <input type="text" placeholder="Model" name="psw" required/>
-        <button type="submit" className={styles.btn}>Shop Now</button>
+        <button type="submit" className={styles.btn} onClick={handleShopNow}>Shop Now</button>
   </form>
 </div>
 }

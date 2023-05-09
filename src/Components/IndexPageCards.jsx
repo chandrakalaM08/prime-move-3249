@@ -121,7 +121,7 @@ export default function IndexPageCards() {
                 <span class="fa fa-star  checked" style={styles.checked}><StarIcon/></span>
                 <span class="fa fa-star "><StarIcon/></span> 
               </Text>
-              <Text>$ {item.price}</Text>
+              <Text> ₹ {item.price}</Text>
             </CardBody>
        
               <Button style={{ marginTop:"-8px", marginBottom:"12px", width:"170px"}}>Add to cart <span style={{marginLeft:"5px"}}><AiOutlineShoppingCart /></span> </Button>

@@ -28,30 +28,46 @@ function Login() {
     const navigate = useNavigate()
 
 
-    const {login,isAuth,setUserName} = useContext(AuthContext)
+    const {login,isAuth,setUserName,setAuth} = useContext(AuthContext)
 
     if (isAuth) {
       return <Navigate to="/"/>
     }
 
     async function handleLogin() {
-        try {
-            let res = await fetch(`http://localhost:8080/users`)
+      try {
+          let loginsuccess = false
+            let res = await fetch(`https://sparkling-fabulous-grandiflora.glitch.me/users`)
         
         res = await res.json()
-        console.log("inside try", res,)
-          login()
-          setUserName(email)
-            console.log("login done")
-            navigate("/")
+          console.log("inside try", res,)
+          res.filter((user) => {
+            if (user.email === email && user.password === password) {
+              login(user.token)
+              loginsuccess = true
+              setUserName(user.first_name + " " + user.last_name)
+               
+               console.log("login done")
+            }
+          })
         
-
+        if (loginsuccess === true) {
+          navigate("/cart")
+        }
+        else {
+          alert("Wrong Credentials!")
+        }
+        
+        
         } catch (error) {
-            console.log("error is", error)
+          console.log("error is", error)
+          alert("User Not Found")
         }
        
 }
 
+  
+  
 
     function handleSubmit(e) {
       e.preventDefault()
@@ -95,7 +111,7 @@ function Login() {
               Remember password
             </Checkbox>
 
-            <Input colorScheme='yellow' size='lg' mb='2' w='100%' type='submit'/>
+            <Input bg='rgb(252, 198, 3)' size='lg' mb='2' w='100%' type='submit' cursor={"pointer"}/>
               
               </form>
 <Divider/>
